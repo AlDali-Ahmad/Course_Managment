@@ -32,7 +32,7 @@ class LessonController extends Controller
         ]);
         Lesson::create($validate);
         /*$request->user()->create($validate);*/
-        return redirect('lessons');
+        return redirect('coursetypes');
     }
     public function show(Lesson $lesson)
     {

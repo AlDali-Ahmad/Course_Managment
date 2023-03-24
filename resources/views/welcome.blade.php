@@ -45,9 +45,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{__('Teachers')}}</a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
-                    @can('teacher_Home')
                     <li><a href="/teacher" class="dropdown-item">{{__('Home')}}</a></li>
-                    @endcan
                     @can('teacher_create')
                     <li><a class="dropdown-item" href="/teacher/create">{{__('Create')}}</a></li>
                     @endcan
@@ -55,14 +53,20 @@
             </li>
 
             <li class="nav-item dropdown">
+                @can('Manager Rols')
                 <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{__('Manager Rols')}}</a>
+                @endcan
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
                     @guest
                         <li><a class="dropdown-item" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                         <li><a class="dropdown-item" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                     @else
+                        @can('Manage User')
                         <li><a class="dropdown-item" href="{{ route('users.index') }}">{{__('Manage Users')}}</a></li>
+                        @endcan
+                            @can('Manage Role')
                         <li><a class="dropdown-item" href="{{ route('roles.index') }}">{{__('Manage Role')}}</a></li>
+                            @endcan
                     @endguest
                 </ul>
             </li>
@@ -79,6 +83,7 @@
                 </ul>
             </li>
             <li class="nav-item dropdown">
+
                 <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{__('Lang')}}</a>
                 <ul class="dropdown-menu dropdown-menu-end">
                     @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
@@ -89,6 +94,7 @@
                         </li>
                     @endforeach
                 </ul>
+
             </li>
 
             <li class="nav-item dropdown">
@@ -97,7 +103,9 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
                         @auth
                             <i>
+                                @can('dashbord')
                                 <a href="{{ url('/dashboard') }}" class="dropdown-item">{{__('Dashboard')}}</a>
+                                @endcan
                             </i>
                         @else
                             <a href="{{ route('login') }}" class="dropdown-item">{{__('Log in')}}</a>

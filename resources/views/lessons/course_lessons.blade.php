@@ -9,6 +9,9 @@
                         <div class="text-center">
                             <h2 class="fw-bolder">{{__('From our blog')}}</h2>
                             <p class="lead fw-normal text-muted mb-5">{{__('Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque fugit ratione dicta mollitia. Officiis ad.')}}</p>
+                            @can('create lesson')
+                            <a id="btn-submit" href="/lessons/create"  class="btn btn-outline-secondary">{{__('Create Lesson')}}</a><br>
+                            @endcan
                         </div>
                     </div>
                 </div>
@@ -38,8 +41,9 @@
                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            @can('show lesson')
                                             <a href="/lessons/{{$lesson->id}}" class="btn btn-outline-primary">{{__('Show')}}</a>
-
+                                            @endcan
                                         </div>
                                     </div>
                                 </div>
@@ -51,22 +55,4 @@
             </div>
         </section>
     </main>
-
-
-
-
-    {{--@foreach($lessons as $lesson)
-        <p>{{$lesson->title}}</p>
-        <p>{{$lesson->description_lesson}}</p>
-        <p>{{$lesson->duration}}</p>
-        <p>{{$lesson->number_course}}</p>
-        @foreach($courses as $course)
-            @if($course->id == $lesson->course_id)
-                <p>{{$course->Name_Courses}}</p>
-            @endif
-        @endforeach
-        <a href="/lessons/{{$lesson->id}}/edit" class="btn btn-outline-primary">Edit</a>
-        <h5>=======================</h5>
-    @endforeach--}}
-
 @endsection

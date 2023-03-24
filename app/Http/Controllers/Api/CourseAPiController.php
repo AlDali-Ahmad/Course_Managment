@@ -17,21 +17,16 @@ class CourseAPiController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData=$request->validate([
-            'Name_Courses' => 'Required|string|max:20',
-            'description' => 'Required|min:10',
-            'teacher_id' => 'required|integer|exists:teachers,id',
-            'course_type_id' => 'required|integer|exists:course_types,id',
-            'count_hours' => 'Required',
+        $course = Course::create([
+            'Name_Courses' => $request->Name_Courses,
+            'description' => $request->description,
+            'teacher_id' => $request->teacher_id,
+            'course_type_id' => $request->course_type_id,
+            'count_hours' => $request->count_hours,
         ]);
-        //$course=Course::create($request->all());
-        $course=$request->user()->create($validatedData);
-        return[
-            "status"=>1,
-            "data"=>$course
-        ];
+        return new Course($course);
     }
-    public function show(string $id)
+    public function show(C $id)
     {
         //
     }

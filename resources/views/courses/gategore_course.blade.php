@@ -6,7 +6,9 @@
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h6 class="section-title bg-white text-center text-primary px-3">{{__('Courses')}}</h6>
                 <h1 class="mb-5">{{__('Popular Courses')}}</h1>
+                @can('create Course')
                 <a id="btn-submit" href="/courses/create"  class="btn btn-outline-secondary">{{__('Create Course')}}</a>
+                @endcan
             </div>
             <div class="row g-4 justify-content-center">
                 @foreach($courses as $course)
@@ -18,7 +20,9 @@
                                     @can('ReadMore')
                                     <a href="{{route('lessons.course_lessons',$course->id)}}" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
                                     @endcan
+                                    @can('join Now')
                                     <a href="/login" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">{{__('Join Now')}}</a>
+                                    @endcan
                                 </div>
                             </div>
                             <div class="text-center p-4 pb-0">

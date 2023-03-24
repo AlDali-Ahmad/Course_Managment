@@ -17,9 +17,6 @@
                     <x-nav-link href="welcome">
                         {{ __('HOME') }}
                     </x-nav-link>
-                    <x-nav-link href="Adminindex">
-                        {{ __('Course Manager') }}
-                    </x-nav-link>
                 </div>
             </div>
 

@@ -9,9 +9,11 @@
                     <div class="text-center">
                         <h2 class="fw-bolder">{{__('From our blog')}}</h2>
                         <p class="lead fw-normal text-muted mb-5">{{__('Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque fugit ratione dicta mollitia. Officiis ad.')}}</p>
+
                     </div>
                 </div>
             </div>
+
             <div class="row gx-5">
                 @foreach($lessons as $lesson)
                     <div class="col-lg-4 mb-5">
