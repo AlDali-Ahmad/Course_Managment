@@ -17,14 +17,21 @@ class CourseAPiController extends Controller
 
     public function store(Request $request)
     {
-        $course = Course::create([
-            'Name_Courses' => $request->Name_Courses,
-            'description' => $request->description,
-            'teacher_id' => $request->teacher_id,
-            'course_type_id' => $request->course_type_id,
-            'count_hours' => $request->count_hours,
+        $validatedData = $request->validate([
+            'Name_Courses' => 'required|string|max:255',
+            'description' => 'required|string',
+            'teacher_id' => 'required|integer',
+            'course_type_id' => 'required|integer',
+            'count_hours' => 'required|integer',
+            'user_id' => 'required|string|max:255',
         ]);
-        return new Course($course);
+
+        $course = Course::create($validatedData);
+
+        return response()->json([
+            'message' => 'Course created successfully',
+            'data' => $course
+        ], 201);
     }
     public function show(C $id)
     {
@@ -38,7 +45,23 @@ class CourseAPiController extends Controller
 
     public function update(Request $request, string $id)
     {
-        //
+        $course = Course::findOrFail($id);
+
+        $validatedData = $request->validate([
+            'Name_Courses' => 'required|string|max:255',
+            'description' => 'required|string',
+            'teacher_id' => 'required|integer',
+            'course_type_id' => 'required|integer',
+            'count_hours' => 'required|integer',
+            'user_id' => 'required|string|max:255',
+        ]);
+
+        $course->update($validatedData);
+
+        return response()->json([
+            'message' => 'Course updated successfully',
+            'data' => $course
+        ], 200);
     }
 
     public function destroy(string $id)
